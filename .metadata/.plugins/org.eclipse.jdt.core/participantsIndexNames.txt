@@ -1,0 +1,11 @@
+INDEX VERSION 1.131
+/Users/osmanmedzhytov/eclipse-workspace/ostina/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1040170811.index
+/spring-demo/src/main/java
+/Users/osmanmedzhytov/eclipse-workspace/ostina/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3158116686.index
+/spring-monolith/src/main/java
+/Users/osmanmedzhytov/eclipse-workspace/ostina/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2376336518.index
+/spring-music-app/src/main/java
+/Users/osmanmedzhytov/eclipse-workspace/ostina/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3720173385.index
+/spring-mvc-demo/src/main/java
+/Users/osmanmedzhytov/eclipse-workspace/ostina/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2546392296.index
+/spring-demo/src/main/java

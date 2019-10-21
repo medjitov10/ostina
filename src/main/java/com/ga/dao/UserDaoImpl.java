@@ -5,9 +5,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ga.entity.User;
-
+@Repository
 public class UserDaoImpl implements UserDao{
 	
 	@Autowired 
