@@ -1,5 +1,32 @@
 package com.ga.dao;
 
-public class UserDaoImpl {
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ga.entity.User;
+
+public class UserDaoImpl implements UserDao{
+	
+	@Autowired 
+	private SessionFactory sessionFactory;
+	
+	
+
+	public List<User> listUsers() {
+		List<User> allUsers = null;
+		Session session= sessionFactory.getCurrentSession();
+		try {
+			session.beginTransaction();
+			allUsers = session.createQuery("FROM User").getResultList();
+			
+			
+		} finally {
+			session.close();
+		}
+		return allUsers;
+	}
 
 }
