@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+/Users/osmanmedzhytov/eclipse-workspace/ostina/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2294921743.index
+817816208.index
+2215962187.index
+1349943494.index
+2435285020.index
+708067027.index
+4036804922.index
+557173393.index
