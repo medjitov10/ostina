@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDao{
 	private SessionFactory sessionFactory;
 	
 	
-
+	@Override
 	public List<User> listUsers() {
 		List<User> allUsers = null;
 		Session session= sessionFactory.getCurrentSession();
@@ -29,5 +29,22 @@ public class UserDaoImpl implements UserDao{
 		}
 		return allUsers;
 	}
+
+
+	@Override
+	public User signUp(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.beginTransaction();
+			session.save(user);
+			session.getTransaction().commit();
+			
+		}
+		finally {
+			session.close();
+		}
+		return user;
+	}
+	
 
 }

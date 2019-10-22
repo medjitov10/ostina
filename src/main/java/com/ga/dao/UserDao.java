@@ -7,6 +7,9 @@ import com.ga.entity.User;
 public interface UserDao {
 	public List <User> listUsers();
 	
+	public User signUp (User user);
+	
+	
 	
 	
 

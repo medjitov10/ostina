@@ -12,10 +12,17 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired 
 	UserDao userDao;
-	
+	@Override
 	public List<User> listUsers() {
 		
 		return userDao.listUsers();
 	}
+     
+	@Override
+	public User signUp(User user) {
+		
+		return userDao.signUp(user);
+	}
+	
 
 }
