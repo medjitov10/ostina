@@ -24,6 +24,9 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Post> posts;
 	
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn( name = "user_profile_id")
+	private Profile userProfile;
 
 	// Getters and setters
 	
@@ -63,6 +66,15 @@ public class User {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
+	}
+	
+
+	public Profile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(Profile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	public User() {};
