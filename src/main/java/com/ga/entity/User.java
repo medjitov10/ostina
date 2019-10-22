@@ -21,7 +21,20 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String password;
 
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Post> posts;
+	
+
 	// Getters and setters
+	
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	
 	public Long getUserId() {
 		return userId;
 	}
