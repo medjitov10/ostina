@@ -26,13 +26,24 @@ public class Post {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
+	@OneToMany(mappedBy = "post", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Comment> comments;
 	
-	public long getPostId() {
-		return this.post_id;
+	
+	public long getPost_id() {
+		return post_id;
 	}
 
-	public void setPostId(long post_id) {
+	public void setPost_id(long post_id) {
 		this.post_id = post_id;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public User getUser() {
