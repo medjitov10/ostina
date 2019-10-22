@@ -11,6 +11,8 @@ public interface UserDao {
 
 	public User logIn(User user);
 	
+	public User getUserByUserName(String username);
+	
 	
 	
 	

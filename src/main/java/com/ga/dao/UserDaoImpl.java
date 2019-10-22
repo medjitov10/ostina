@@ -14,6 +14,23 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Override
+    public User getUserByUserName(String username) {
+        Session session= sessionFactory.getCurrentSession();
+        User dbuser;
+        try{
+            session.beginTransaction();
+            dbuser= (User) session.createQuery("from User u where u.username='"+
+                    username+ "'")
+                    .getSingleResult();
+
+        }
+        finally{
+            session.close();
+        }
+        return dbuser;
+    }
 
 	@Override
 	public List<User> listUsers() {
@@ -49,8 +66,7 @@ public class UserDaoImpl implements UserDao {
 		User foundUser;
 		try {
 			session.beginTransaction();
-			foundUser = (User) session.createQuery("FROM User where username='" + user.getUsername()
-					+ "' and password='" + user.getPassword() + "'").getSingleResult();
+			foundUser = (User) session.createQuery("FROM User where username='" + user.getUsername() + "'").getSingleResult();
 		} finally {
 			session.close();
 		}

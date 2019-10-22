@@ -26,12 +26,12 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public User signUp(@RequestBody User user) {
+	public String signUp(@RequestBody User user) {
 		return userService.signUp(user);
 	}
 	
 	@PostMapping("/login")
-	public User login(@RequestBody User user) {
+	public String login(@RequestBody User user) {
 		return userService.logIn(user);
 	}
 
