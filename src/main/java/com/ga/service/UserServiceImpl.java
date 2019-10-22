@@ -20,9 +20,12 @@ public class UserServiceImpl implements UserService {
      
 	@Override
 	public User signUp(User user) {
-		
 		return userDao.signUp(user);
 	}
-	
 
+	@Override
+	public User logIn(User user) {
+		return userDao.logIn(user);
+	}
+	
 }
