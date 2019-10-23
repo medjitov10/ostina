@@ -11,4 +11,6 @@ public interface PostDao {
 	public Post createPost(User user, Post post);
 	
 	public List <Post> listPosts();
+	
+	public Post getPostByPostId(String id);
 }

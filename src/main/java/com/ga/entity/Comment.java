@@ -27,6 +27,19 @@ public class Comment {
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "post_id", nullable = false)
 	private Post post;
+	
+	@JsonIgnore
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@JoinColumn(name = "user_id", nullable = false )
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Comment(long commentId, String body, Post post) {
 		this.commentId = commentId;

@@ -16,7 +16,6 @@ import com.ga.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-
 public class UserController {
 	@Autowired 
 	UserService userService;
@@ -29,6 +28,7 @@ public class UserController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody User user) {
+		System.out.println("qweqwe");
     	return ResponseEntity.ok(new JwtResponse(userService.signUp(user)));
 	}
 

@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String signUp(User user) {
+		
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		User savedUser = userDao.signUp(user);
 		
