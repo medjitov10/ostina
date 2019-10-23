@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ga.entity.Post;
+import com.ga.service.PostService;
 
 @RestController
 @RequestMapping("/post")
 public class PostController {
-//	@Autowired
-//	PostService postService;
+	@Autowired
+	PostService postService;
 
 	@PostMapping
 	public Post createPost(@RequestHeader("Authorization") String tokenHeader, @RequestBody Post post) {
-		return null;
-
+		return postService.createPost(tokenHeader, post);
 	}
 }

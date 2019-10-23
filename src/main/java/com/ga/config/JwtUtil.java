@@ -34,6 +34,10 @@ public class JwtUtil implements Serializable {
                 .setExpiration(new Date(System.currentTimeMillis() + JTW_TOKEN_VALIDITY * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
+    
+    public String pureToken(String token) {
+    	return token.substring(7);
+    }
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
