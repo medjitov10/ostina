@@ -1,5 +1,7 @@
 package com.ga.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,11 @@ public class PostServiceImpl implements PostService {
 		
 		User user = userDao.getUserByUserName(username);
 		return postDao.createPost(user, post);
+	}
+	@Override
+	public List<Post> listPosts() {
+		
+		return postDao.listPosts();
 	}
 
 }

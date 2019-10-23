@@ -1,5 +1,7 @@
 package com.ga.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,22 @@ public class PostDaoImpl implements PostDao {
 			session.close();
 		}
 		return post;
+	}
+	@Override
+	public List<Post> listPosts() {
+		List <Post> listPosts = null;
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.beginTransaction();
+			listPosts=session.createQuery("FROM Post").getResultList();
+			
+			
+			
+		}
+		finally {
+			session.close();
+		}
+		return listPosts;
 	}
 
 }
