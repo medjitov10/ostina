@@ -30,6 +30,18 @@ public class User {
 	private List<Post> posts;
 	
 	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Comment> comments;
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	@JsonIgnore
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn( name = "user_profile_id")
 	private Profile userProfile;

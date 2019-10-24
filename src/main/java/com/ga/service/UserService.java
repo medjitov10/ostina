@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.ga.entity.Comment;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -21,5 +22,5 @@ public interface UserService extends UserDetailsService{
 
 	public Profile updateProfile(Profile profile, String tokenHeader);
 	
-	
+	public List<Comment> commentsByUser(String token);
 }

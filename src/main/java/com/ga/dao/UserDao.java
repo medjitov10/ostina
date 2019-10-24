@@ -2,6 +2,7 @@ package com.ga.dao;
 
 import java.util.List;
 
+import com.ga.entity.Comment;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -19,4 +20,6 @@ public interface UserDao {
 	public Profile getProfile(User user);
 
 	public Profile updateProfile(Profile profile, User user);
+
+	public List<Comment> getCommentsByUser(User user);
 }

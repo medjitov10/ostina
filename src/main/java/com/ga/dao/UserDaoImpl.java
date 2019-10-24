@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ga.entity.Comment;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -111,6 +112,11 @@ public class UserDaoImpl implements UserDao {
 			session.close();
 		}
 		return existedProfile;
+	}
+
+	@Override
+	public List<Comment> getCommentsByUser(User user) {
+		return user.getComments();
 	}
 
 }
