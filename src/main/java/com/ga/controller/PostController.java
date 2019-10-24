@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ga.entity.Comment;
 import com.ga.entity.Post;
 import com.ga.service.PostService;
 
@@ -29,6 +30,11 @@ public class PostController {
 	@DeleteMapping("/{postId}")
 	public Post deletePost(@PathVariable Long postId, @RequestHeader("Authorization") String tokerHeader) {
 		return postService.deletePost(postId, tokerHeader);
+	}
+	
+	@GetMapping("/{postId}/comment")
+	public List<Comment> allComments(@PathVariable Long postId) {
+		return postService.allComments(postId);
 	}
 	
 	@GetMapping("/list")

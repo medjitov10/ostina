@@ -79,10 +79,29 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public User createProfile(Profile profile, String tokenHeader) {
+	public Profile createProfile(Profile profile, String tokenHeader) {
 		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(tokenHeader));
 		User user = userDao.getUserByUserName(username);
+	
 		return userDao.createProfile(profile, user);
 	}
+	
+	
+	
+	@Override
+	public Profile getProfile(String token) {
+		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(token));
+		User user = userDao.getUserByUserName(username);
+		return userDao.getProfile(user);
+	}
+
+	@Override
+	public Profile updateProfile(Profile profile, String tokenHeader) {
+		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(tokenHeader));
+		User user = userDao.getUserByUserName(username);
+		
+		return userDao.updateProfile(profile, user);
+	}
+
 
 }

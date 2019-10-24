@@ -15,23 +15,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	@Override
-    public User getUserByUserName(String username) {
-        Session session= sessionFactory.getCurrentSession();
-        User dbuser;
-        try{
-            session.beginTransaction();
-            dbuser= (User) session.createQuery("from User u where u.username='"+
-                    username+ "'")
-                    .getSingleResult();
 
-        }
-        finally{
-            session.close();
-        }
-        return dbuser;
-    }
+	@Override
+	public User getUserByUserName(String username) {
+		Session session = sessionFactory.getCurrentSession();
+		User dbuser;
+		try {
+			session.beginTransaction();
+			dbuser = (User) session.createQuery("from User u where u.username='" + username + "'").getSingleResult();
+
+		} finally {
+			session.close();
+		}
+		return dbuser;
+	}
 
 	@Override
 	public List<User> listUsers() {
@@ -67,7 +64,8 @@ public class UserDaoImpl implements UserDao {
 		User foundUser;
 		try {
 			session.beginTransaction();
-			foundUser = (User) session.createQuery("FROM User where username='" + user.getUsername() + "'").getSingleResult();
+			foundUser = (User) session.createQuery("FROM User where username='" + user.getUsername() + "'")
+					.getSingleResult();
 		} finally {
 			session.close();
 		}
@@ -75,17 +73,44 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User createProfile(Profile profile, User user) {
+	public Profile createProfile(Profile profile, User user) {
 		Session session = sessionFactory.getCurrentSession();
+
 		try {
 			session.beginTransaction();
+			profile.setUser(user);
 			user.setUserProfile(profile);
+			session.saveOrUpdate(profile);
 			session.saveOrUpdate(user);
 			session.getTransaction().commit();
 		} finally {
 			session.close();
 		}
-		return user;
+		return profile;
+	}
+
+	@Override
+	public Profile getProfile(User user) {
+
+		return user.getUserProfile();
+	}
+
+	@Override
+	public Profile updateProfile(Profile profile, User user) {
+		Session session = sessionFactory.getCurrentSession();
+		Profile existedProfile = user.getUserProfile();
+		existedProfile.setMobile(profile.getMobile());
+		try {
+			session.beginTransaction();
+			existedProfile.setUser(user);
+			user.setUserProfile(existedProfile);
+			session.update(existedProfile);
+			session.update(user);
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
+		return existedProfile;
 	}
 
 }

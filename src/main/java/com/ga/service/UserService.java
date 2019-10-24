@@ -15,7 +15,11 @@ public interface UserService extends UserDetailsService{
 
 	public String logIn(User user);
 
-	public User createProfile(Profile profile, String tokenHeader);
+	public Profile createProfile(Profile profile, String tokenHeader);
+	
+	public Profile getProfile(String token);
+
+	public Profile updateProfile(Profile profile, String tokenHeader);
 	
 	
 }

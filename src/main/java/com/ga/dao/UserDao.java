@@ -14,5 +14,9 @@ public interface UserDao {
 	
 	public User getUserByUserName(String username);
 
-	public User createProfile(Profile profile, User user);
+	public Profile createProfile(Profile profile, User user);
+
+	public Profile getProfile(User user);
+
+	public Profile updateProfile(Profile profile, User user);
 }

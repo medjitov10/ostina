@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ga.config.JwtUtil;
 import com.ga.dao.PostDao;
 import com.ga.dao.UserDao;
+import com.ga.entity.Comment;
 import com.ga.entity.Post;
 import com.ga.entity.User;
 
@@ -51,6 +52,12 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<Post> allPosts() {
 		return postDao.listPosts();
+	}
+	
+	@Override
+	public List<Comment> allComments(Long postId) {
+		
+		return postDao.allComments(postId);
 	}
 
 	
