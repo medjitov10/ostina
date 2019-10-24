@@ -39,8 +39,15 @@ public class PostServiceImpl implements PostService {
 		return postDao.listPosts();
 	}
 	@Override
-	public Post deletePost(Long postId) {
-		return postDao.deletePost(postId);
+	public Post deletePost(Long postId, String token) {
+		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(token));
+		User user = userDao.getUserByUserName(username);
+		
+		Post post = postDao.getPostByPostId(postId);
+		if (post.getUser().getUserId() == user.getUserId())
+			return postDao.deletePost(postId);
+		return null;
 	}
 
+	
 }

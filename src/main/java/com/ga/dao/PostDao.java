@@ -12,7 +12,7 @@ public interface PostDao {
 	
 	public List <Post> listPosts();
 	
-	public Post getPostByPostId(String id);
+	public Post getPostByPostId(Long id);
 
 	public Post deletePost(Long postId);
 }

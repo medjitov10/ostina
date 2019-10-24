@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.ga.config.JwtUtil;
 import com.ga.dao.UserDao;
+import com.ga.entity.Profile;
 import com.ga.entity.User;
 
 @Service
@@ -76,5 +77,12 @@ public class UserServiceImpl implements UserService {
 //convert the roles into granted authority list
         return authorities;
     }
+
+	@Override
+	public User createProfile(Profile profile, String tokenHeader) {
+		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(tokenHeader));
+		User user = userDao.getUserByUserName(username);
+		return userDao.createProfile(profile, user);
+	}
 
 }

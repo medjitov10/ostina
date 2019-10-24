@@ -5,5 +5,5 @@ import com.ga.entity.Post;
 import com.ga.entity.User;
 
 public interface CommentService {
-	public Comment createComment(Comment comment, String postId, String token);
+	public Comment createComment(Comment comment, Long postId, String token);
 }

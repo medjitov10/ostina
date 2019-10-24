@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.ga.entity.Profile;
 import com.ga.entity.User;
 
 public interface UserService extends UserDetailsService{
@@ -13,6 +14,8 @@ public interface UserService extends UserDetailsService{
 	public String signUp(User user);
 
 	public String logIn(User user);
+
+	public User createProfile(Profile profile, String tokenHeader);
 	
 	
 }

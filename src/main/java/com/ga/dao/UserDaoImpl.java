@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ga.entity.Profile;
 import com.ga.entity.User;
 
 @Repository
@@ -71,6 +72,20 @@ public class UserDaoImpl implements UserDao {
 			session.close();
 		}
 		return foundUser;
+	}
+
+	@Override
+	public User createProfile(Profile profile, User user) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.beginTransaction();
+			user.setUserProfile(profile);
+			session.saveOrUpdate(user);
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
+		return user;
 	}
 
 }

@@ -46,14 +46,14 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public Post getPostByPostId(String id) {
+	public Post getPostByPostId(Long id) {
 
 		Session session = sessionFactory.getCurrentSession();
 		Post post;
 		try {
 			session.beginTransaction();
-			post = (Post) session.createQuery("From Post where post_id ='" + id + "'").getSingleResult();
-		} finally {
+			post = session.get(Post.class, id);
+		}	finally {
 			session.close();
 		}
 		return post;
@@ -62,7 +62,7 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public Post deletePost(Long postId) {
 		Post post = null;
-	    post = getPostById(postId);
+	    post = getPostByPostId(postId);
 		Session session = sessionFactory.getCurrentSession();
        
         try {
@@ -75,17 +75,4 @@ public class PostDaoImpl implements PostDao {
         }
         return post;
 	}
-	
-	private Post getPostById(Long id) {
-		Session session = sessionFactory.getCurrentSession();
-		Post post;
-		try {
-			session.beginTransaction();
-			post = session.get(Post.class, id);
-		}	finally {
-			session.close();
-		}
-		return post;
-	}
-
 }

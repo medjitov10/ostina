@@ -25,10 +25,10 @@ public class PostController {
 	public Post createPost(@RequestHeader("Authorization") String tokenHeader, @RequestBody Post post) {
 		return postService.createPost(tokenHeader, post);
 	}
-	//@RequestHeader("Authorization") String tokerHeader,
+	
 	@DeleteMapping("/{postId}")
-	public Post deletePost(@PathVariable Long postId) {
-		return postService.deletePost(postId);
+	public Post deletePost(@PathVariable Long postId, @RequestHeader("Authorization") String tokerHeader) {
+		return postService.deletePost(postId, tokerHeader);
 	}
 	
 	@GetMapping("/list")

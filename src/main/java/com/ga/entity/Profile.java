@@ -17,13 +17,13 @@ public class Profile {
 	private long profileId;
 	
 	@Column
-	private String email;
+	private String additionalEmail;
 	
 	@Column
 	private String mobile;
 	
 	@Column
-	private long address;
+	private String address;
 	
  
 	public long getProfileId() {
@@ -35,11 +35,11 @@ public class Profile {
 	}
 
 	public String getEmail() {
-		return email;
+		return additionalEmail;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.additionalEmail = email;
 	}
 
 	public String getMobile() {
@@ -50,11 +50,11 @@ public class Profile {
 		this.mobile = mobile;
 	}
 
-	public long getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(long address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 	

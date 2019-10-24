@@ -2,6 +2,7 @@ package com.ga.dao;
 
 import java.util.List;
 
+import com.ga.entity.Profile;
 import com.ga.entity.User;
 
 public interface UserDao {
@@ -12,4 +13,6 @@ public interface UserDao {
 	public User logIn(User user);
 	
 	public User getUserByUserName(String username);
+
+	public User createProfile(Profile profile, User user);
 }

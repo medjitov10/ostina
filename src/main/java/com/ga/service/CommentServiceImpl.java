@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
 	private PostDao postDao;
 	
 	@Override
-	public Comment createComment(Comment comment, String postId, String headerToken) {
+	public Comment createComment(Comment comment, Long postId, String headerToken) {
 		// TODO Auto-generated method stub
 		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(headerToken));
 		

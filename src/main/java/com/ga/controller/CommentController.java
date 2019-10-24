@@ -19,7 +19,7 @@ public class CommentController {
 	private CommentService commentService;
 	
 	@PostMapping("/{postId}")
-	public Comment createComment(@RequestHeader("Authorization") String tokenHeader, @RequestBody Comment comment, @PathVariable String postId) {
+	public Comment createComment(@RequestHeader("Authorization") String tokenHeader, @RequestBody Comment comment, @PathVariable Long postId) {
 		return commentService.createComment(comment, postId, tokenHeader);
 	}
 }

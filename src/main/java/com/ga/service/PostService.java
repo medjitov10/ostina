@@ -9,5 +9,5 @@ public interface PostService {
 
 	public List<Post> listPosts();
 
-	public Post deletePost(Long postId);
+	public Post deletePost(Long postId, String token);
 }
