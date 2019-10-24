@@ -11,9 +11,9 @@ public interface UserService extends UserDetailsService{
 
 	public List<User> listUsers();
 	
-	public String signUp(User user);
+	public List<String> signUp(User user);
 
-	public String logIn(User user);
+	public List<String> logIn(User user);
 
 	public Profile createProfile(Profile profile, String tokenHeader);
 	

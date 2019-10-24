@@ -1,6 +1,7 @@
 package com.ga.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,24 +39,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String signUp(User user) {
+	public List<String> signUp(User user) {
 		
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		User savedUser = userDao.signUp(user);
 		
 		if(savedUser != null) {
 			UserDetails userDetails = loadUserByUsername(user.getUsername());
-			return jwtUtil.generateToken(userDetails);
+			return Arrays.asList( jwtUtil.generateToken(userDetails),user.getUsername());
+			
 		}
 		return null;
 	}
 
 	@Override
-	public String logIn(User user) {
+	public List<String> logIn(User user) {
 		User savedUser = userDao.logIn(user);
 		if(savedUser != null) {
 			UserDetails userDetails = loadUserByUsername(user.getUsername());
-			return jwtUtil.generateToken(userDetails);
+			return Arrays.asList( jwtUtil.generateToken(userDetails),user.getUsername());
 		}
 		
 		return null;
