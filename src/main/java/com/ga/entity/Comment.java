@@ -18,17 +18,15 @@ public class Comment {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long commentId;
+	private long id;
 	
 	@Column(nullable = false)
-	private String body;
+	private String text;
 	
-	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "post_id", nullable = false)
 	private Post post;
 	
-	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "user_id", nullable = false )
 	private User user;
@@ -41,26 +39,26 @@ public class Comment {
 		this.user = user;
 	}
 
-	public Comment(long commentId, String body, Post post) {
-		this.commentId = commentId;
-		this.body = body;
+	public Comment(long commentId, String text, Post post) {
+		this.id = commentId;
+		this.text = text;
 		this.post = post;
 	}
 
-	public long getCommentId() {
-		return commentId;
+	public long getId() {
+		return id;
 	}
 
-	public void setCommentId(long commentId) {
-		this.commentId = commentId;
+	public void setId(long commentId) {
+		this.id = commentId;
 	}
 
-	public String getBody() {
-		return body;
+	public String getText() {
+		return text;
 	}
 
-	public void setBody(String body) {
-		this.body = body;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Post getPost() {

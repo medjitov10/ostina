@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
 		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(tokenHeader));
 		User user = userDao.getUserByUserName(username);
 		Comment comment = commentDao.getCommentByCommentId(commentId);
-		if (user.getUserId() == comment.getUser().getUserId())
+		if (user.getId() == comment.getUser().getId())
 		return commentDao.deleteComment(user, comment);
 		return null;
 	}

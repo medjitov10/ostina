@@ -16,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="user_profile")
 public class Profile {
 	@Id
-	@Column(name="profile_id")
+	@Column(name="id")
 	@GeneratedValue (strategy= GenerationType.IDENTITY)
-	private long profileId;
+	private long id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_profile_id")
@@ -34,12 +34,12 @@ public class Profile {
 	private String address;
 	
  
-	public long getProfileId() {
-		return profileId;
+	public long getId() {
+		return id;
 	}
 
-	public void setProfileId(long profileId) {
-		this.profileId = profileId;
+	public void setId(long profileId) {
+		this.id = profileId;
 	}
 
 	public String getMobile() {
@@ -77,7 +77,7 @@ public class Profile {
 
 	public Profile(long profileId, User user, String additionalEmail, String mobile, String address) {
 		super();
-		this.profileId = profileId;
+		this.id = profileId;
 		this.user = user;
 		this.additionalEmail = additionalEmail;
 		this.mobile = mobile;

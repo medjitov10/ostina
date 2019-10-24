@@ -14,9 +14,9 @@ public class User {
 	
 	@JsonIgnore
 	@Id
-	@Column(name = "user_id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
+	private Long id;
 	
 	@Column(unique = true, nullable = false)
 	private String username;
@@ -56,12 +56,12 @@ public class User {
 		this.posts = posts;
 	}
 	
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long userId) {
+		this.id = userId;
 	}
 
 	public String getUsername() {
@@ -81,7 +81,7 @@ public class User {
 	}
 	// Default constructor and Overloaded constructor
 	public User(Long userId, String username, String password) {
-		this.userId = userId;
+		this.id = userId;
 		this.username = username;
 		this.password = password;
 	}

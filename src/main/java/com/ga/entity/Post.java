@@ -12,9 +12,9 @@ import java.util.List;
 @Table(name="Posts")
 public class Post {
 	@Id
-	@Column(name = "post_id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long post_id;
+	private long id;
 	
 	@Column(name = "description", nullable = false)
 	private String description;
@@ -30,22 +30,13 @@ public class Post {
 	@OneToMany(mappedBy = "post", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
-//	private HashMap<String, HashMap<String, String>> userDetail;
-	
-//	public HashMap<String, HashMap<String, String>> getUserDetail() {
-//		return userDetail;
-//	}
 
-	
-
-
-
-	public long getPost_id() {
-		return post_id;
+	public long getId() {
+		return id;
 	}
 
-	public void setPost_id(long post_id) {
-		this.post_id = post_id;
+	public void setId(long post_id) {
+		this.id = post_id;
 	}
 
 	public List<Comment> getComments() {
@@ -61,11 +52,6 @@ public class Post {
 	}
 
 	public void setUser(User user) {
-//		HashMap<String, HashMap<String,String>> usernameDetail = new HashMap<>();
-//		HashMap<String, String> username = new HashMap<>();
-//		username.put("username", user.getUsername());
-//		usernameDetail.put("user", username);
-//		this.userDetail = usernameDetail;
 		this.user = user;
 	}
 
@@ -87,7 +73,7 @@ public class Post {
 
 	public Post(long post_id, String body, String title, User user) {
 		this.user = user;
-		this.post_id = post_id;
+		this.id = post_id;
 		this.description = body;
 		this.title = title;
 	}

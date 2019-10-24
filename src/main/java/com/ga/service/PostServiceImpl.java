@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostService {
 		User user = userDao.getUserByUserName(username);
 		
 		Post post = postDao.getPostByPostId(postId);
-		if (post.getUser().getUserId() == user.getUserId())
+		if (post.getUser().getId() == user.getId())
 			return postDao.deletePost(postId);
 		return null;
 	}
