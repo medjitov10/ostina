@@ -8,4 +8,6 @@ public interface PostService {
 	public Post createPost(String tokenHeader, Post post);
 
 	public List<Post> listPosts();
+
+	public Post deletePost(Long postId);
 }

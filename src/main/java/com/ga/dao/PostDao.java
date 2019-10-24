@@ -13,4 +13,6 @@ public interface PostDao {
 	public List <Post> listPosts();
 	
 	public Post getPostByPostId(String id);
+
+	public Post deletePost(Long postId);
 }

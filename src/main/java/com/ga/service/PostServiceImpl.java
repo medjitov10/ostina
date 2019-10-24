@@ -38,5 +38,9 @@ public class PostServiceImpl implements PostService {
 		
 		return postDao.listPosts();
 	}
+	@Override
+	public Post deletePost(Long postId) {
+		return postDao.deletePost(postId);
+	}
 
 }
