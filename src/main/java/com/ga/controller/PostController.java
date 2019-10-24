@@ -33,6 +33,6 @@ public class PostController {
 	
 	@GetMapping("/list")
 	public List<Post> allPosts(){
-	return postService.listPosts();
+		return postService.listPosts();
 	}
 }

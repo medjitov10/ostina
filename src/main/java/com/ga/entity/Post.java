@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -15,21 +16,30 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long post_id;
 	
-	@Column(name = "body", nullable = false)
-	private String body;
+	@Column(name = "description", nullable = false)
+	private String description;
 	
 	@Column(nullable = false)
 	private String title;
 	
-	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "post", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
+//	private HashMap<String, HashMap<String, String>> userDetail;
 	
+//	public HashMap<String, HashMap<String, String>> getUserDetail() {
+//		return userDetail;
+//	}
+
+	
+
+
+
 	public long getPost_id() {
 		return post_id;
 	}
@@ -51,15 +61,20 @@ public class Post {
 	}
 
 	public void setUser(User user) {
+//		HashMap<String, HashMap<String,String>> usernameDetail = new HashMap<>();
+//		HashMap<String, String> username = new HashMap<>();
+//		username.put("username", user.getUsername());
+//		usernameDetail.put("user", username);
+//		this.userDetail = usernameDetail;
 		this.user = user;
 	}
 
-	public String getBody() {
-		return body;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setBody(String body) {
-		this.body = body;
+	public void setDescription(String body) {
+		this.description = body;
 	}
 
 	public String getTitle() {
@@ -73,7 +88,7 @@ public class Post {
 	public Post(long post_id, String body, String title, User user) {
 		this.user = user;
 		this.post_id = post_id;
-		this.body = body;
+		this.description = body;
 		this.title = title;
 	}
 	

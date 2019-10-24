@@ -1,5 +1,6 @@
 package com.ga.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Session;

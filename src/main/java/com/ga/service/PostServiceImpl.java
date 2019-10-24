@@ -48,6 +48,10 @@ public class PostServiceImpl implements PostService {
 			return postDao.deletePost(postId);
 		return null;
 	}
+	@Override
+	public List<Post> allPosts() {
+		return postDao.listPosts();
+	}
 
 	
 }

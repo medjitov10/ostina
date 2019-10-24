@@ -3,6 +3,7 @@ package com.ga.entity;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User {
+	
+	@JsonIgnore
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +21,15 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String username;
 	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "password", nullable = false)
 	private String password;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Post> posts;
 	
+	@JsonIgnore
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn( name = "user_profile_id")
 	private Profile userProfile;
