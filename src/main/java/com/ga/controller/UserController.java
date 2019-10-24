@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ga.entity.Comment;
 import com.ga.entity.JwtResponse;
+import com.ga.entity.Post;
 import com.ga.entity.User;
 import com.ga.service.UserService;
 
@@ -41,5 +42,10 @@ public class UserController {
 	@GetMapping("/comment")
 	public List<Comment> commentsByUser(@RequestHeader("Authorization") String tokenHeader) {
 		return userService.commentsByUser(tokenHeader);
+	}
+	
+	@GetMapping("/post")
+	public List<Post> postsByUser(@RequestHeader("Authorization") String tokenHeader) {
+		return userService.postsByUser(tokenHeader);
 	}
 }

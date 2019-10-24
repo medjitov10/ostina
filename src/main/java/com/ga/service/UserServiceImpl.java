@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.ga.config.JwtUtil;
 import com.ga.dao.UserDao;
 import com.ga.entity.Comment;
+import com.ga.entity.Post;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -111,6 +112,14 @@ public class UserServiceImpl implements UserService {
 		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(token));
 		User user = userDao.getUserByUserName(username);
 		return userDao.getCommentsByUser(user);
+	}
+
+	@Override
+	public List<Post> postsByUser(String tokenHeader) {
+		String username = jwtUtil.getUsernameFromToken(jwtUtil.pureToken(tokenHeader));
+		User user = userDao.getUserByUserName(username);
+		return userDao.getPostsByUser(user);
+		
 	}
 
 

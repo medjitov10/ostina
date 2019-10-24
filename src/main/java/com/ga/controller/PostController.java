@@ -41,4 +41,5 @@ public class PostController {
 	public List<Post> allPosts(){
 		return postService.listPosts();
 	}
+	
 }
