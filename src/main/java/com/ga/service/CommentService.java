@@ -6,4 +6,6 @@ import com.ga.entity.User;
 
 public interface CommentService {
 	public Comment createComment(Comment comment, Long postId, String token);
+
+	public Comment deleteComment(String tokenHeader, Long commentId);
 }

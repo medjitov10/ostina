@@ -1,6 +1,7 @@
 package com.ga.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,5 +22,10 @@ public class CommentController {
 	@PostMapping("/{postId}")
 	public Comment createComment(@RequestHeader("Authorization") String tokenHeader, @RequestBody Comment comment, @PathVariable Long postId) {
 		return commentService.createComment(comment, postId, tokenHeader);
+	}
+	
+	@DeleteMapping("/{commentId}")
+	public Comment deleteComment(@RequestHeader("Authorization") String tokenHeader, @RequestBody Comment comment, @PathVariable Long commentId) {
+		return commentService.deleteComment(tokenHeader, commentId);
 	}
 }

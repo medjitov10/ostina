@@ -28,7 +28,6 @@ public class UserController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody User user) {
-		System.out.println("qweqwe");
     	return ResponseEntity.ok(new JwtResponse(userService.signUp(user)));
 	}
 
@@ -36,5 +35,4 @@ public class UserController {
 	public ResponseEntity<?> login(@RequestBody User user) {
 		return ResponseEntity.ok(new JwtResponse(userService.logIn(user)));
 	}
-
 }
