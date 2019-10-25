@@ -1,6 +1,7 @@
 package com.ga.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ga.entity.Comment;
 import com.ga.entity.User;
 import com.ga.service.UserService;
 
@@ -38,6 +40,9 @@ public class UserControllerTest {
 	
 	@InjectMocks
 	private User user;
+	
+	@InjectMocks
+	private Comment comment;
 	
 	@Mock
 	UserService userService;
@@ -109,10 +114,30 @@ public class UserControllerTest {
 		
 	}
 	
+	@Test
+	public void commentsByUser_User_Success() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders
+			       .get("/user/comment")
+			       .accept(MediaType.APPLICATION_JSON)
+			       .header("Authorization", "Bearer " + "token");
+		List<Comment> listOfComments = new ArrayList<>();
+		listOfComments.add(comment);
+		ObjectMapper mapper = new ObjectMapper();
+		String listOfCommentsMapper = mapper.writeValueAsString(listOfComments);
+		
+		when(userService.commentsByUser(any())).thenReturn(listOfComments);
+		mockMvc.perform(requestBuilder)
+			.andExpect(status().isOk())
+			.andExpect(content()
+			.string(listOfCommentsMapper));
+	}
+	
 	@Before
 	public void initializer() throws JsonProcessingException {
 		user.setUsername("Osman");
 		user.setId(1L);
+		comment.setText("Hi my name is христина");
+		comment.setId(1L);
 	}
 
 }
