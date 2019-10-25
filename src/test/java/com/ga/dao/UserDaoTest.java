@@ -15,12 +15,15 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ga.entity.Comment;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -110,6 +113,20 @@ public class UserDaoTest {
     	Profile profileTemp = userDao.getProfile(user);
     
     	Assert.assertNotNull(profileTemp);    	
+    }
+    
+    @Test
+    public void updateProfile_UserDao_Success() {
+    	Profile profileTemp = userDao.updateProfile(profile, user);
+    	Assert.assertNotNull(profileTemp);
+    
+    }
+    @Test
+    public void getCommentsByUser_UserDao_Success() {
+    	List <Comment> comments = userDao.getCommentsByUser(user);
+    	
+    	assertEquals(comments, user.getComments());
+    	
     }
     
     @Before
