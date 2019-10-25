@@ -25,7 +25,7 @@ public class CommentController {
 	}
 	
 	@DeleteMapping("/{commentId}")
-	public Comment deleteComment(@RequestHeader("Authorization") String tokenHeader, @RequestBody Comment comment, @PathVariable Long commentId) {
+	public Comment deleteComment(@RequestHeader("Authorization") String tokenHeader, @PathVariable Long commentId) {
 		return commentService.deleteComment(tokenHeader, commentId);
 	}
 }

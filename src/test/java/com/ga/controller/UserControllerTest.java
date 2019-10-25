@@ -43,13 +43,15 @@ public class UserControllerTest {
 	@Test
 	public void signup_User_Success() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
-			       .post("/user/signup")
+			       .post("/user/signup")//req type
 			       .contentType(MediaType.APPLICATION_JSON)
-			       .content(createUserInJson("joe","abc"));
-		List<String> retString = Arrays.asList("user","123456");
-		when(userService.signUp(any())).thenReturn(retString);
+			       //.header("Authorization", "some-token")
+			       .content(createUserInJson("joe","abc"));//body {username and password}
+		List<String> retString = Arrays.asList("123456", "user");
 		
-		MvcResult result = mockMvc.perform(requestBuilder)
+		when(userService.signUp(any())).thenReturn(retString);//mocking userService
+		
+		MvcResult result = mockMvc.perform(requestBuilder)//making a req
 	              .andExpect(status().isOk())
 	              .andExpect(content().json("{\"username\":\"user\",\"token\":\"123456\"}"))
 	              .andReturn();
@@ -64,9 +66,9 @@ public class UserControllerTest {
 			       .contentType(MediaType.APPLICATION_JSON)
 			       .content(createUserInJson("joe","abc"));
 		
-		List<String> retString = Arrays.asList("user","123456");
+		List<String> retString = Arrays.asList("123456", "user");
 		
-		when(userService.signUp(any())).thenReturn(retString);
+		when(userService.logIn(any())).thenReturn(retString);
 		
 		MvcResult result = mockMvc.perform(requestBuilder)
 	              .andExpect(status().isOk())

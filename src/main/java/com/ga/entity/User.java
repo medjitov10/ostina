@@ -21,6 +21,9 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String username;
 	
+	@Column(unique = true, nullable = false)
+	private String email;
+	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "password", nullable = false)
 	private String password;
@@ -48,8 +51,17 @@ public class User {
 
 	// Getters and setters
 	
+	
 	public List<Post> getPosts() {
 		return posts;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setPosts(List<Post> posts) {
@@ -84,6 +96,7 @@ public class User {
 		this.id = userId;
 		this.username = username;
 		this.password = password;
+		this.email = email;
 	}
 	
 

@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 			session.close();
 		}
 		return dbuser;
-	}
+	} 
 
 	@Override
 	public List<User> listUsers() {
