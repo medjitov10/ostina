@@ -81,6 +81,15 @@ public class UserServiceTest {
 		
 		Assert.assertNotNull(actualToken);
 	}
+	@Test
+	public void logIn_UserNotFound_Error() {
+		user.setId(null);
+		when(userDao.logIn(any())).thenReturn(user);
+		List<String> token = userService.logIn(user);
+		assertEquals(token, null);
+		
+	}
+	
 	
 	@Test
 	public void logIn_User_Success() {
