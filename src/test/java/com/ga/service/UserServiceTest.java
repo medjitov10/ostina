@@ -68,6 +68,20 @@ public class UserServiceTest {
 		Assert.assertNotNull(actualToken);
 	}
 	
+	@Test
+	public void logIn_User_Success() {
+		String expectedString = "12345";
+		
+		when(userDao.logIn(user)).thenReturn(user);
+		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(jwtUtil.generateToken(any())).thenReturn(expectedString);
+		when(bCryptPasswordEncoder.encode(any())).thenReturn("Hristina");
+		
+		List<String> actualToken = userService.logIn(user);
+		
+		Assert.assertNotNull(actualToken);
+	}
+	
 	
     
 	 @Before
