@@ -82,6 +82,16 @@ public class UserDaoTest {
     	assertEquals(userTemp, user);
     }
     
+    @Test
+    public void logIn_UserDao_Success() {
+    	when(session.createQuery(anyString())).thenReturn(query);
+    	when(query.getSingleResult()).thenReturn(user);
+    	User userTemp = userDao.logIn(user);
+    	assertEquals(userTemp, user);
+    	
+    	
+    }
+    
 	
 
 }
