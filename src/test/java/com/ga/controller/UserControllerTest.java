@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ga.entity.Comment;
+import com.ga.entity.Post;
 import com.ga.entity.User;
 import com.ga.service.UserService;
 
@@ -44,6 +45,9 @@ public class UserControllerTest {
 	@InjectMocks
 	private Comment comment;
 	
+	@InjectMocks
+	private Post post;
+	
 	@Mock
 	UserService userService;
 
@@ -56,6 +60,7 @@ public class UserControllerTest {
         return "{ \"username\": \"" + username + "\", " +
                 "\"password\":\"" + password + "\"}";
     }
+	
 	
 	@Test
 	public void signup_User_Success() throws Exception {
@@ -128,8 +133,27 @@ public class UserControllerTest {
 		when(userService.commentsByUser(any())).thenReturn(listOfComments);
 		mockMvc.perform(requestBuilder)
 			.andExpect(status().isOk())
-			.andExpect(content()
-			.string(listOfCommentsMapper));
+			.andExpect(content().string(listOfCommentsMapper));
+	}
+	
+	@Test
+	public void postByUser_User_Success() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders
+			       .get("/user/post")
+			       .accept(MediaType.APPLICATION_JSON)
+			       .header("Authorization", "Bearer " + "token");
+		List<Post> listOfPosts = new ArrayList<>();
+		listOfPosts.add(post);
+		ObjectMapper mapper = new ObjectMapper();
+		String listOfPostsMapper = mapper.writeValueAsString(listOfPosts);
+		
+		when(userService.postsByUser(any())).thenReturn(listOfPosts);
+		mockMvc.perform(requestBuilder)
+		.andExpect(status().isOk())
+		.andExpect(content().string(listOfPostsMapper));
+		
+		
+		
 	}
 	
 	@Before
@@ -138,6 +162,10 @@ public class UserControllerTest {
 		user.setId(1L);
 		comment.setText("Hi my name is христина");
 		comment.setId(1L);
+		post.setTitle("test");
+		post.setId(1L);
 	}
+	
+
 
 }

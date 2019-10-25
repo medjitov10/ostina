@@ -61,6 +61,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	
 	public User logIn(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		User foundUser;
