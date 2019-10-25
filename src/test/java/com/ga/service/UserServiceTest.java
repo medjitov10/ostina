@@ -100,6 +100,18 @@ public class UserServiceTest {
 		Assert.assertNotNull(profile);
 	}
 	
+	@Test
+	public void getProfile_User_Success() {
+		when(jwtUtil.getUsernameFromToken(any())).thenReturn(user.getUsername());
+		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(jwtUtil.generateToken(any())).thenReturn("12345");
+		when(bCryptPasswordEncoder.encode(any())).thenReturn("Hristina");
+		when(userDao.getProfile(user)).thenReturn(profile);
+		Profile profileTemp = userService.getProfile("12345");
+		assertEquals(profileTemp, profile);
+		
+		
+	}
     
 	 @Before
     public void initializeDummyUser() {
