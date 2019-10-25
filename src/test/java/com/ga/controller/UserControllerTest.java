@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +22,9 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ga.entity.User;
 import com.ga.service.UserService;
 
 
@@ -32,6 +36,9 @@ public class UserControllerTest {
 	@InjectMocks
 	UserController userController;
 	
+	@InjectMocks
+	private User user;
+	
 	@Mock
 	UserService userService;
 
@@ -39,11 +46,16 @@ public class UserControllerTest {
 	public void init() {
 		mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 	}
+
+	private static String createUserInJson(String username, String password) {
+        return "{ \"username\": \"" + username + "\", " +
+                "\"password\":\"" + password + "\"}";
+    }
 	
 	@Test
 	public void signup_User_Success() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
-			       .post("/user/signup")//req type
+			       .post("/user/signup")
 			       .contentType(MediaType.APPLICATION_JSON)
 			       //.header("Authorization", "some-token")
 			       .content(createUserInJson("joe","abc"));//body {username and password}
@@ -79,9 +91,28 @@ public class UserControllerTest {
 	      System.out.println(result.getResponse().getContentAsString());
 	}
 	
-	private static String createUserInJson(String username, String password) {
-        return "{ \"username\": \"" + username + "\", " +
-                "\"password\":\"" + password + "\"}";
-    }
+	@Test
+	public void list_User_Success() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders
+			       .get("/user/list")
+			       .accept(MediaType.APPLICATION_JSON);
+		List<User> listOfUsers = new ArrayList<>();
+		listOfUsers.add(user);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String listUserMapper = mapper.writeValueAsString(listOfUsers);
+		
+		when(userService.listUsers()).thenReturn(listOfUsers);
+		mockMvc.perform(requestBuilder)
+			.andExpect(status().isOk())
+			.andExpect(content().string(listUserMapper));
+		
+	}
+	
+	@Before
+	public void initializer() throws JsonProcessingException {
+		user.setUsername("Osman");
+		user.setId(1L);
+	}
 
 }
