@@ -148,6 +148,22 @@ public class UserServiceTest {
 		
 		
 	}
+	@Test
+	public void postsByUser_User_Success() {
+		List <Post> posts = new ArrayList<>();
+		posts.add(post);
+		when(jwtUtil.getUsernameFromToken(any())).thenReturn(user.getUsername());
+		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(jwtUtil.generateToken(any())).thenReturn("12345");
+		when(bCryptPasswordEncoder.encode(any())).thenReturn("Hristina");
+		when(userDao.updateProfile(profile, user)).thenReturn(profile);
+		when(userDao.getPostsByUser(user)).thenReturn(posts);
+		List <Post> postsTemp = userService.postsByUser("12345");
+		
+		Assert.assertNotNull(postsTemp);
+		
+		
+	}
 	 @Before
     public void initializeDummyUser() {
         user.setId(1L);
