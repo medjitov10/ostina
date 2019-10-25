@@ -20,6 +20,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -96,11 +97,26 @@ public class UserDaoTest {
     	
     	
     }
+    
     @Test
     public void createProfile_UserDao_Success() {
     	Profile profileTemp = userDao.createProfile(profile, user);
     	Assert.assertNotNull(profileTemp);
     	
+    }
+    
+    @Test
+    public void getProfile_UserDao_Success() {
+    	Profile profileTemp = userDao.getProfile(user);
+    
+    	Assert.assertNotNull(profileTemp);    	
+    }
+    
+    @Before
+	public void ingrv() throws JsonProcessingException {
+		user.setUsername("Osman");
+		user.setId(1L);
+		user.setUserProfile(profile);
     }
     
 	
