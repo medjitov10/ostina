@@ -1,4 +1,4 @@
-package com.ga.controller;
+package com.ga.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
