@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -20,6 +21,7 @@ import static org.mockito.Mockito.when;
 
 import com.ga.config.JwtUtil;
 import com.ga.dao.UserDao;
+import com.ga.entity.Profile;
 import com.ga.entity.User;
 import com.ga.service.UserServiceImpl;
 
@@ -40,6 +42,10 @@ public class UserServiceTest {
 	
 	@InjectMocks
 	private User user;
+	
+	@InjectMocks
+	private Profile profile;
+	
 	@Before
     public void initMocks() {
       MockitoAnnotations.initMocks(this);
@@ -82,6 +88,17 @@ public class UserServiceTest {
 		Assert.assertNotNull(actualToken);
 	}
 	
+	@Test
+	public void createProfile_User_Success() {
+		when(jwtUtil.getUsernameFromToken(any())).thenReturn(user.getUsername());
+		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(jwtUtil.generateToken(any())).thenReturn("12345");
+		when(bCryptPasswordEncoder.encode(any())).thenReturn("Hristina");
+		when(userDao.createProfile(any(), any())).thenReturn(profile);
+		Profile profileTemp = userService.createProfile(profile, "12345");
+		
+		Assert.assertNotNull(profile);
+	}
 	
     
 	 @Before
