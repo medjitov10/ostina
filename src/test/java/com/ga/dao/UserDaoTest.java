@@ -19,6 +19,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import com.ga.entity.Profile;
 import com.ga.entity.User;
 
 
@@ -36,6 +38,9 @@ public class UserDaoTest {
 
     @InjectMocks
     private UserDaoImpl userDao;
+    
+    @InjectMocks
+    private Profile profile;
     
     @Mock
     private SessionFactory sessionFactory;
@@ -89,6 +94,12 @@ public class UserDaoTest {
     	User userTemp = userDao.logIn(user);
     	assertEquals(userTemp, user);
     	
+    	
+    }
+    @Test
+    public void createProfile_UserDao_Success() {
+    	Profile profileTemp = userDao.createProfile(profile, user);
+    	Assert.assertNotNull(profileTemp);
     	
     }
     
