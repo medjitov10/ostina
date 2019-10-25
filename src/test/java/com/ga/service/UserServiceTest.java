@@ -112,6 +112,17 @@ public class UserServiceTest {
 		
 		
 	}
+	
+	@Test
+	public void updateProfile_User_Success() {
+		when(jwtUtil.getUsernameFromToken(any())).thenReturn(user.getUsername());
+		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(jwtUtil.generateToken(any())).thenReturn("12345");
+		when(bCryptPasswordEncoder.encode(any())).thenReturn("Hristina");
+		when(userDao.updateProfile(profile, user)).thenReturn(profile);
+		Profile profileTemp = userService.updateProfile(profile,"12345");
+		assertEquals(profileTemp, profile);
+	}
     
 	 @Before
     public void initializeDummyUser() {
