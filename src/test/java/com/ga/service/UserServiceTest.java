@@ -21,6 +21,8 @@ import static org.mockito.Mockito.when;
 
 import com.ga.config.JwtUtil;
 import com.ga.dao.UserDao;
+import com.ga.entity.Comment;
+import com.ga.entity.Post;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 import com.ga.service.UserServiceImpl;
@@ -45,6 +47,12 @@ public class UserServiceTest {
 	
 	@InjectMocks
 	private Profile profile;
+	
+	@InjectMocks
+	private Comment comment;
+	
+	@InjectMocks
+	private Post post;
 	
 	@Before
     public void initMocks() {
@@ -124,6 +132,22 @@ public class UserServiceTest {
 		assertEquals(profileTemp, profile);
 	}
     
+	@Test
+	public void commentsByUser_User_Success() {
+		List <Comment> comments = new ArrayList<>();
+		comments.add(comment);
+		when(jwtUtil.getUsernameFromToken(any())).thenReturn(user.getUsername());
+		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(jwtUtil.generateToken(any())).thenReturn("12345");
+		when(bCryptPasswordEncoder.encode(any())).thenReturn("Hristina");
+		when(userDao.updateProfile(profile, user)).thenReturn(profile);
+		when(userDao.getCommentsByUser(user)).thenReturn(comments);
+		List <Comment> commentsTemp = userService.commentsByUser("12345");
+		
+		Assert.assertNotNull(commentsTemp);
+		
+		
+	}
 	 @Before
     public void initializeDummyUser() {
         user.setId(1L);
