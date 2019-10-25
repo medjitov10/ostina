@@ -70,7 +70,8 @@ public class UserServiceImpl implements UserService {
 
 		User user = userDao.getUserByUserName(username);
 
-		return new org.springframework.security.core.userdetails.User(user.getUsername(),
+		return new org.springframework.security.core.userdetails
+				.User(user.getUsername(), 
 				bCryptPasswordEncoder.encode(user.getPassword()), getGrantedAuthorities(user));
 	}
 	
