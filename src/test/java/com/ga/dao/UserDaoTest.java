@@ -137,6 +137,14 @@ public class UserDaoTest {
     	
     }
     
+    @Test
+    public void getPostsByUser_UserDao_Success() {
+    	List <Post> posts = userDao.getPostsByUser(user);
+    	
+    	assertEquals(posts, user.getPosts());
+    	
+    }
+    
     @Before
 	public void ingrv() throws JsonProcessingException {
 		user.setUsername("Osman");

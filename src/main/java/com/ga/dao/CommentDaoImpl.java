@@ -22,8 +22,6 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public Comment createComment(Comment comment, Post post, User user) {
 		Session session = sessionFactory.getCurrentSession();
-		List<Comment> comments = new ArrayList<Comment>();
-		comments.add(comment);
 		try {
 			session.beginTransaction();
 			comment.setUser(user);
