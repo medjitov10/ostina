@@ -29,9 +29,4 @@ public class ProfileController {
 	public Profile createProfile(@RequestHeader("Authorization") String tokenHeader, @RequestBody Profile profile) {
 		return userService.createProfile(profile, tokenHeader);
 	}
-	
-	@PutMapping
-	public Profile updateProfile(@RequestHeader("Authorization") String tokenHeader, @RequestBody Profile profile) {
-		return userService.updateProfile(profile, tokenHeader);
-	}
 }

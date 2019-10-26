@@ -170,8 +170,6 @@ public class UserServiceTest {
 		List <Post> postsTemp = userService.postsByUser("12345");
 		
 		Assert.assertNotNull(postsTemp);
-		
-		
 	}
 	 @Before
     public void initializeDummyUser() {
