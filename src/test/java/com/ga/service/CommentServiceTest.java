@@ -77,11 +77,11 @@ public class CommentServiceTest {
 	@Test
 	public void createComment_commentService_Success() {
 		when(jwtUtil.getUsernameFromToken(any())).thenReturn("Hristina");
-		when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
+		when(userDao.getUserByUserName(any())).thenReturn(user);
 		when(postDao.getPostByPostId(1L)).thenReturn(post);
 		when(commentDao.createComment(comment, post, user)).thenReturn(comment);
 		Comment commentTmp = commentService.createComment(comment, 1L, any());
-		assertEquals(commentTmp, commentTmp);
+		assertEquals(commentTmp, comment);
 	}
 	
 	@Test
