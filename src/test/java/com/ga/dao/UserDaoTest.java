@@ -24,6 +24,7 @@ import org.hibernate.query.Query;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ga.entity.Comment;
+import com.ga.entity.Post;
 import com.ga.entity.Profile;
 import com.ga.entity.User;
 
@@ -126,6 +127,13 @@ public class UserDaoTest {
     	List <Comment> comments = userDao.getCommentsByUser(user);
     	
     	assertEquals(comments, user.getComments());
+    	
+    }
+    @Test
+    public void getPostByUser_UserDao_Success() {
+    	List <Post> posts = userDao.getPostsByUser(user);
+    	
+    	assertEquals(posts, user.getPosts());
     	
     }
     
