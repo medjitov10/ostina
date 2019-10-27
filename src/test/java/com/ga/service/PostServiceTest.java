@@ -1,9 +1,14 @@
 package com.ga.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -49,21 +54,15 @@ public class PostServiceTest {
 
 	@InjectMocks
 	private Post post;
+	
+	@InjectMocks
+	private Post postNull;
 
 	@Before
 	public void initMocks() {
 		MockitoAnnotations.initMocks(this);
 	}
 	
-	@Before
-	public void initializeDummyUser() {
-		user.setId(1L);
-		user.setUsername("batman");
-		post.setId(1L);
-		post.setUser(user);
-		comment.setId(1L);
-		post.setUser(user);
-	}
 
 	@Test
 	public void createPost_postService_Success() {
@@ -84,10 +83,54 @@ public class PostServiceTest {
 		when(postDao.deletePost(1L)).thenReturn(post);
 		
 		Post postTmp = postService.deletePost(1L,"123123");
-		
+		assertNotNull("Test returned null object, expected non-null", postTmp);
 		assertEquals(postTmp, post);
 	}
 
+	@Test
+	public void deletePost_postService_Failed() {
+		User user1 = new User();
+		user1.setId(4L);
+		postNull.setUser(user1);
+		when(jwtUtil.getUsernameFromToken(any())).thenReturn("Hristina");
+		when(userDao.getUserByUserName(any())).thenReturn(user);
+		when(postDao.getPostByPostId(4L)).thenReturn(postNull);
+		Post postTmp = postService.deletePost(4L,"123123");
+		Assert.assertNull(postTmp);
+	}
 	
+	@Test
+	public void listPosts_postService_Success() {
+		List<Post> posts = Arrays.asList(post);
+		when(postDao.listPosts()).thenReturn(posts);
+		List<Post> listPosts = postService.listPosts();
+		Assert.assertNotNull(listPosts);
+	}
+	
+	@Test
+	public void allPosts_postService_Success() {
+		List<Post> posts = Arrays.asList(post);
+		when(postDao.listPosts()).thenReturn(posts);
+		List<Post> listPosts = postService.allPosts();
+		Assert.assertNotNull(listPosts);
+	}
+	
+	@Test
+	public void allComments_postService_Success() {
+		List<Comment> comments = Arrays.asList(comment);
+		when(postDao.allComments(1L)).thenReturn(comments);
+		List<Comment> result = postService.allComments(1L);
+		Assert.assertNotNull(result);
+	}
+	
+	@Before
+	public void initializeDummyUser() {
+		user.setId(1L);
+		user.setUsername("batman");
+		post.setId(1L);
+		post.setUser(user);
+		comment.setId(1L);
+		post.setUser(user);
+	}
 
 }

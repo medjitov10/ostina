@@ -7,25 +7,17 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.junit.Assert;
 import org.junit.Before;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ga.entity.Comment;
 import com.ga.entity.Post;
-import com.ga.entity.Profile;
 import com.ga.entity.User;
 
 public class CommentDaoTest {

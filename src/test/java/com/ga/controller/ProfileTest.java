@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import static org.mockito.ArgumentMatchers.any;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,7 +42,7 @@ public class ProfileTest {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/profile").contentType(MediaType.APPLICATION_JSON)
 				.header("Authorization", token).content(createProfileInJson());
 
-		when(userService.createProfile(profile, token)).thenReturn(profile);
+		when(userService.createProfile(any(), any())).thenReturn(profile);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonMapper = mapper.writeValueAsString(profile);
 		
@@ -60,7 +61,7 @@ public class ProfileTest {
 		String jsonMapper = mapper.writeValueAsString(profile);
 		when(userService.getProfile(token)).thenReturn(profile);
 
-		MvcResult result = mockMvc.perform(requestBuilder)
+		mockMvc.perform(requestBuilder)
 			.andExpect(status().isOk())
 			.andExpect(content().string(jsonMapper))
 			.andReturn();;

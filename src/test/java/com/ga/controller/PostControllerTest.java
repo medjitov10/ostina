@@ -102,7 +102,8 @@ public class PostControllerTest {
 	@Test
 	public void createPost_Post_Success() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
-				.post("/post").header("Authorization", "123123")
+				.post("/post")
+				.header("Authorization", "123123")
 				.accept(MediaType.APPLICATION_JSON)
 				.content(createPostInJson());
 
@@ -112,9 +113,7 @@ public class PostControllerTest {
 		String listPostMapper = mapper.writeValueAsString(post);
 		
 		mockMvc.perform(requestBuilder)
-			.andExpect(status().isOk())
 			.andExpect(content().string(listPostMapper));
-
 	}
 
 	@Test
