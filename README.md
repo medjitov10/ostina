@@ -7,7 +7,7 @@ Languages:
 Libraries and Frameworks:
 - Spring, Hibernate, Spring Security, Mockito, Bcrypt,JSON Web Tokens
 
-Tools
+Tools:
 -Postman, Eclipse, Apache, Tomcat 9, Maven, Pivotal Tracker for user stories
 
 
