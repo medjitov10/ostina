@@ -24,7 +24,7 @@ public class PostDaoImpl implements PostDao {
 		try {
 			session.beginTransaction();
 			post.setUser(user);
-			session.save(post);
+			session.saveOrUpdate(post);
 			session.getTransaction().commit();
 
 		} finally {

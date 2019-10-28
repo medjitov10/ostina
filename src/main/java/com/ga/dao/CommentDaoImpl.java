@@ -26,7 +26,7 @@ public class CommentDaoImpl implements CommentDao {
 			session.beginTransaction();
 			comment.setUser(user);
 			comment.setPost(post);
-			session.save(comment);
+			session.saveOrUpdate(comment);
 			session.getTransaction().commit();
 		} finally {
 			session.close();
