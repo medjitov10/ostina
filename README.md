@@ -1,7 +1,15 @@
 # ostina
 1. Explanations of the technologies used.
 
-PSQL, Spring, Java 
+Languages:
+- Java, PostgreSQL
+
+Libraries and Frameworks:
+- Spring, Hibernate, Spring Security, Mockito, Bcrypt,JSON Web Tokens
+
+Tools
+-Postman, Eclipse, Apache, Tomcat 9, Maven, Pivotal Tracker for user stories
+
 
 2. A couple of paragraphs about the general approach you took.
 
