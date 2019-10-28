@@ -11,10 +11,10 @@ public class JwtResponse {
 
     public JwtResponse(String jwt) {
         this.jwt = jwt;
-
     }
     
     public JwtResponse(List<String> list) {
+    	System.out.println(list);
     	this.jwt = list.get(0);
     	this.username = list.get(1);
     }

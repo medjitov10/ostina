@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDao {
 					.getSingleResult();
 		} finally {
 			session.close();
-		}
+		}		
 		return foundUser;
 	}
 

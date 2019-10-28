@@ -56,8 +56,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<String> logIn(User user) {
+		
+		
 		User savedUser = userDao.logIn(user);
-		if(user.getId()!= null && savedUser != null) {
+
+		if(savedUser.getId()!= null && savedUser != null) {
 			UserDetails userDetails = loadUserByUsername(user.getUsername());
 			return Arrays.asList( jwtUtil.generateToken(userDetails),user.getUsername());
 		}
